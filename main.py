@@ -1,4 +1,5 @@
 import github_api
+import ui
 from requests.exceptions import HTTPError
 while True:
     user_input = input("\nEnter the GitHub username you want to analyze: ")
@@ -6,11 +7,10 @@ while True:
     if not user_input.strip():
         print("\nUsername cannot be empty")
         continue
-    
     break
 try:
     response = github_api.get_user(user_input)
-    print(f"\n {response}")
+    ui.display_user(response)
 except HTTPError as e:
     status_code = e.response.status_code
     if status_code == 404:
