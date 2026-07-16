@@ -1,4 +1,5 @@
 import github_api
+import analyzer
 import ui
 from requests.exceptions import HTTPError
 while True:
@@ -19,3 +20,7 @@ except HTTPError as e:
         print("GitHub API access was denied or the rate limit has been exceeded.Please try again later.")
     else:
         print(f"GitHub API returned an error '{status_code}'")
+
+user_repos = github_api.get_repositories(user_input)
+top_repos = analyzer.analyze_repositories(user_repos)
+ui.display_top_repos(top_repos)

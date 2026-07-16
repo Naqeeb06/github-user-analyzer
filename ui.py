@@ -24,3 +24,20 @@ def display_user(user_info):
         print(f"Company: {user_info['company']}")
 
     print(f"\nAccount Created at: {user_info['account_created']}\n")
+
+def display_top_repos(top_repos):
+    print("\n====================\nTop Repositories\n====================")
+    for i, repo in enumerate(top_repos):
+        print(f"\n===============\nRepository {i+1}:\n===============\n")
+        print(f"Repository Name: {repo['repo_name']}")
+        print(f"Stars: {repo['stars']}")
+
+        if repo['language'] is None:
+            print("Language: Not specified.")
+        else:
+            print(f"Language: {repo['language']} ")
+
+        if repo['description'] is None:
+            print("Description: Not specified.")
+        else:
+            print(f"Description: {repo['description']}")

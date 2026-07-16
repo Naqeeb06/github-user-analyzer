@@ -21,3 +21,23 @@ def get_user(username):
     }
 
     return user_info
+
+def get_repositories(username):
+    url = f"{BASE_URL}/users/{username}/repos"
+
+    response = requests.get(url, timeout=5)
+    response.raise_for_status()
+    repositories_data = response.json()
+
+    repos_list = []
+    for repo in repositories_data:
+        repository_info = {
+            "repo_name" : repo['name'],
+            "stars" : repo['stargazers_count'],
+            "language" : repo['language'],
+            "description" : repo['description']
+            }
+
+        repos_list.append(repository_info)
+        
+    return repos_list
