@@ -41,3 +41,9 @@ def display_top_repos(top_repos):
             print("Description: Not specified.")
         else:
             print(f"Description: {repo['description']}")
+
+def display_statistics(stats):
+    print("\n====================\nUser Stats\n====================\n")
+    print(f"Total Repositories:  {stats['total_repos']}")
+    print(f"Total Stars: {stats['total_stars']}")       
+    print(f"Average stars per repository: {stats['average_stars']}")
