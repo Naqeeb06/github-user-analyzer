@@ -21,10 +21,40 @@ def analyze_statistics(repos_list):
     else:
         average_stars = total_stars / total_repositories
 
+    language_count = {}
+
+    for repo in repos_list:
+        language = repo['language']
+    
+        if language is None:
+            continue
+
+        if language not in language_count:
+            language_count[language] = 1
+        else:
+            language_count[language] += 1
+    if language_count:
+        most_used_language = max(language_count, key=lambda language: language_count[language])
+    else:
+        most_used_language = None
+
     stats = {
         'total_repos' : total_repositories,
         'total_stars' : total_stars,
-        'average_stars' : average_stars
+        'average_stars' : average_stars,
+        'most_used_language' : most_used_language
     }
 
     return stats
+
+def filter_by_language(repos_list,language):
+    filtered_repos = []
+
+    for repo in repos_list:
+        if repo['language'] is None:
+            continue
+        
+        if repo['language'].lower() == language.lower():
+            filtered_repos.append(repo)
+
+    return filtered_repos

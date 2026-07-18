@@ -1,11 +1,22 @@
 import requests
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+TOKEN = os.getenv("GITHUB_TOKEN")
+if not TOKEN:
+    raise ValueError("GitHub token not found. Please configure your .env file.")
+
+HEADERS = {
+    "Authorization" : f"Bearer {TOKEN}"
+}
 
 BASE_URL = "https://api.github.com"
 
 def get_user(username):
     url = f"{BASE_URL}/users/{username}"
 
-    response = requests.get(url, timeout=5)
+    response = requests.get(url, headers= HEADERS, timeout=5)
     response.raise_for_status()
     user_data = response.json()
     user_info = {

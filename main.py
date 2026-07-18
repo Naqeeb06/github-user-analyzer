@@ -30,3 +30,10 @@ ui.display_top_repos(top_repos)
 
 stats = analyzer.analyze_statistics(user_repos)
 ui.display_statistics(stats)
+
+language = input("Enter language: ")
+filtered_repos = analyzer.filter_by_language(user_repos, language)
+if not filtered_repos:
+    print(f"No avaiable repositories for language: '{language}'")
+else:
+    ui.display_top_repos(filtered_repos)

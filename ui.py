@@ -47,3 +47,10 @@ def display_statistics(stats):
     print(f"Total Repositories:  {stats['total_repos']}")
     print(f"Total Stars: {stats['total_stars']}")       
     print(f"Average stars per repository: {stats['average_stars']}")
+
+    if stats['most_used_language'] is None:
+        print("Most used language: Not available")
+    else:
+        print(f"Most used language: {stats['most_used_language']}")
+
+    
