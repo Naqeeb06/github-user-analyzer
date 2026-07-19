@@ -9,8 +9,8 @@ def display_user(user_info):
         print(f"Bio: {user_info['bio']}")
 
     print(f"\nPublic Repositories: {user_info['public_repositories']}")
-    print(f"Followers: {user_info['followers']}")
-    print(f"Following: {user_info['following']}")
+    print(f"Followers: {user_info['followers']:,}")
+    print(f"Following: {user_info['following']:,}")
 
     print("\n")
     if user_info['location'] is None:
@@ -46,7 +46,7 @@ def display_statistics(stats):
     print("\n====================\nUser Stats\n====================\n")
     print(f"Total Repositories:  {stats['total_repos']}")
     print(f"Total Stars: {stats['total_stars']}")       
-    print(f"Average stars per repository: {stats['average_stars']}")
+    print(f"Average stars per repository: {stats['average_stars']:,.2f}")
 
     if stats['most_used_language'] is None:
         print("Most used language: Not available")

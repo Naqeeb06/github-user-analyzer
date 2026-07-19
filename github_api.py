@@ -1,6 +1,8 @@
 import requests
 from dotenv import load_dotenv
 import os
+from datetime import datetime
+
 
 load_dotenv()
 TOKEN = os.getenv("GITHUB_TOKEN")
@@ -19,6 +21,8 @@ def get_user(username):
     response = requests.get(url, headers= HEADERS, timeout=5)
     response.raise_for_status()
     user_data = response.json()
+    created_at = datetime.strptime(user_data['created_at'], "%Y-%m-%dT%H:%M:%SZ")
+    formatted_date = created_at.strftime("%B %d, %Y")
     user_info = {
         "name": user_data["name"], 
         "username" : user_data["login"], 
@@ -26,7 +30,7 @@ def get_user(username):
         "public_repositories" : user_data["public_repos"], 
         "followers" : user_data["followers"], 
         "following" : user_data["following"], 
-        "account_created" : user_data["created_at"], 
+        "account_created" : formatted_date, 
         "location" : user_data["location"], 
         "company" : user_data["company"]
     }
